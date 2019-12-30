@@ -1,6 +1,10 @@
 name: Build Electron
 
 on:
+  push:
+    branches:
+      - master
+      
   release:
     types: [created]
 
@@ -12,7 +16,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
+      - run: npm install
+      - run: npme
   
   build-electron:
     name: Electron Builder
