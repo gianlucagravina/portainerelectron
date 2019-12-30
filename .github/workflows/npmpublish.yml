@@ -1,0 +1,23 @@
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+  
+  build-electron:
+    name: Electron Builder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: samuelmeuli/action-electron-builder@v1.1.0
+
+ 
